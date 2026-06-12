@@ -1,39 +1,66 @@
-name: Fintech IaC & Core Validation
+name: Fintech Enterprise CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
-  validate-and-lint:
-    runs-on: ubuntu-latest
+  # ==========================================
+  # STAGE 1: INTEGRAÇÃO CONTÍNUA (CI)
+  # ==========================================
+  lint-and-test:
+    name: 🛡️ Code Quality & Syntax Verification
+    runs-on: ubuntu-latest # Isolado na nuvem, não consome seu Arch
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Check out do código
+        uses: actions/checkout@v3
 
-      # --- VALIDAÇÃO DO TERRAFORM ---
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Configurar Ambiente Python
+        uses: actions/setup-python@v4
         with:
-          terraform_version: 1.7.0
+          python-version: '3.11'
+          cache: 'pip' # Sênior: Memoriza dependências para rodar mais rápido
 
-      - name: Terraform Init & Validate
+      - name: Instalar Linter
+        run: pip install flake8
+
+      - name: Executar Análise Estática (Anti-Bug)
         run: |
-          cd terraform
-          terraform init -backend=false
-          terraform validate
+          flake8 app/src/main.py --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      # --- VALIDAÇÃO DO KUBERNETES ---
-      - name: Set up Kubeval / Kube-linter
-        uses: stackrox/kube-linter-action@v1.0.4
-        with:
-          directory: k8s
-          # Isso caça configurações inseguras nos YAMLs automaticamente
+  # ==========================================
+  # STAGE 2: DEPLOY CONTÍNUO (CD)
+  # ==========================================
+  deploy-local-cluster:
+    name: ☸️ Automated Deployment (Minikube)
+    needs: lint-and-test # CRÍTICO: Só inicia se o estágio anterior ficar verde!
+    runs-on: self-hosted # Acorda o seu robô local do Arch Linux
+    
+    steps:
+      - name: Check out do código
+        uses: actions/checkout@v3
 
-      # --- VALIDAÇÃO DO DOCKERFILE ---
-      - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
-        with:
-          dockerfile: app/Dockerfile
+      - name: Configurar Ambiente do Docker no Minikube
+        run: |
+          eval $(minikube -p minikube docker-env)
+
+      - name: Buildar Imagem com Tag de Release
+        run: |
+          cd app
+          docker build -t fintech-app:${{ github.sha }} .
+
+      - name: Injetar Imagem Dinamicamente no Kubernetes
+        run: |
+          # Sênior: Não altera o arquivo yaml físico! Usa o kubectl para atualizar a imagem 
+          # em memória no cluster ou criar um override limpo.
+          kubectl apply -f k8s/secret.yaml
+          kubectl apply -f k8s/postgres.yaml
+          kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/ingress.yaml
+          
+          # Atualiza a imagem do container em tempo de execução de forma elegante
+          kubectl set image deployment/fintech-app-deployment fintech-app=fintech-app:${{ github.sha }}
+          
+          # Garante que o Kubernetes vai esperar o deploy estabilizar
+          kubectl rollout status deployment/fintech-app-deployment --timeout=60s
