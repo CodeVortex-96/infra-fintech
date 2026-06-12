@@ -1,66 +1,65 @@
 name: Fintech Enterprise CI/CD Pipeline
 
+# GATILHO: Dispara a esteira toda vez que houver um 'push' na branch principal
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   # ==========================================
-  # STAGE 1: INTEGRAÇÃO CONTÍNUA (CI)
+  # ESTÁGIO 1: INTEGRAÇÃO CONTÍNUA (CI)
   # ==========================================
   lint-and-test:
     name: 🛡️ Code Quality & Syntax Verification
-    runs-on: ubuntu-latest # Isolado na nuvem, não consome seu Arch
-    steps:
-      - name: Check out do código
-        uses: actions/checkout@v3
-
-      - name: Configurar Ambiente Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip' # Sênior: Memoriza dependências para rodar mais rápido
-
-      - name: Instalar Linter
-        run: pip install flake8
-
-      - name: Executar Análise Estática (Anti-Bug)
-        run: |
-          flake8 app/src/main.py --count --select=E9,F63,F7,F82 --show-source --statistics
-
-  # ==========================================
-  # STAGE 2: DEPLOY CONTÍNUO (CD)
-  # ==========================================
-  deploy-local-cluster:
-    name: ☸️ Automated Deployment (Minikube)
-    needs: lint-and-test # CRÍTICO: Só inicia se o estágio anterior ficar verde!
-    runs-on: self-hosted # Acorda o seu robô local do Arch Linux
+    runs-on: ubuntu-latest # Roda isolado na nuvem do GitHub (não consome seu Arch)
     
     steps:
       - name: Check out do código
         uses: actions/checkout@v3
 
-      - name: Configurar Ambiente do Docker no Minikube
-        run: |
-          eval $(minikube -p minikube docker-env)
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip' # Memoriza dependências para os próximos builds serem instantâneos
 
-      - name: Buildar Imagem com Tag de Release
+      - name: Validar Sintaxe do Código (Anti-Bug de Indentação)
         run: |
+          pip install flake8
+          # Se houver erro de indentação ou sintaxe, o build quebra aqui e protege o cluster
+          flake8 app/src/main.py --count --select=E9,F63,F7,F82 --show-source --statistics
+
+  # ==========================================
+  # ESTÁGIO 2: DEPLOY CONTÍNUO (CD)
+  # ==========================================
+  deploy-local-cluster:
+    name: ☸️ Automated Deployment (Minikube)
+    needs: lint-and-test # CRÍTICO: Só inicia se o estágio anterior (CI) ficar verde!
+    runs-on: self-hosted # Acorda o seu robô local do Arch Linux
+
+    steps:
+      - name: Check out do código
+        uses: actions/checkout@v3
+
+      - name: Buildar e Atualizar no Kubernetes Local
+        run: |
+          # ⚠️ CORREÇÃO DO FISH: Força o Minikube a gerar sintaxe Bash pro Runner ler sem erro
+          eval $(minikube -p minikube docker-env --shell bash)
+
+          # 2. Builda a imagem usando o Hash do Commit como Tag única (evita cache velho)
           cd app
           docker build -t fintech-app:${{ github.sha }} .
 
-      - name: Injetar Imagem Dinamicamente no Kubernetes
-        run: |
-          # Sênior: Não altera o arquivo yaml físico! Usa o kubectl para atualizar a imagem 
-          # em memória no cluster ou criar um override limpo.
-          kubectl apply -f k8s/secret.yaml
-          kubectl apply -f k8s/postgres.yaml
-          kubectl apply -f k8s/service.yaml
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/ingress.yaml
+          # 3. Aplica os manifestos no cluster de forma sequencial
+          cd ../k8s
+          kubectl apply -f secret.yaml
+          kubectl apply -f postgres.yaml
+          kubectl apply -f service.yaml
+          kubectl apply -f deployment.yaml
+          kubectl apply -f ingress.yaml
           
-          # Atualiza a imagem do container em tempo de execução de forma elegante
+          # 4. Atualiza a imagem do container em tempo de execução de forma elegante
           kubectl set image deployment/fintech-app-deployment fintech-app=fintech-app:${{ github.sha }}
           
-          # Garante que o Kubernetes vai esperar o deploy estabilizar
+          # Garante que o Kubernetes vai esperar os pods subirem com sucesso antes de encerrar
           kubectl rollout status deployment/fintech-app-deployment --timeout=60s
