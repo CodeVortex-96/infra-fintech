@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintech-api-deployment
+  labels:
+    app: fintech-api
+spec:
+  replicas: 2 # Diz para o K8s manter SEMPRE 2 containers rodando em paralelo para alta disponibilidade
+  selector:
+    matchLabels:
+      app: fintech-api
+  template:
+    metadata:
+      labels:
+        app: fintech-api
+    spec:
+      containers:
+      - name: fintech-core
+        image: fintech-app:v5
+        imagePullPolicy: Never # Força o Minikube a usar a imagem que você buildou localmente
+        ports:
+        - containerPort: 8080
+        
+        # --- INJEÇÃO DE VARIÁVEIS DE AMBIENTE SEGURAS (COFRE K8S) ---
+        env:
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_NAME
+          value: "fintech_db"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: fintech-db-secrets
+              key: db-user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: fintech-db-secrets
+              key: db-pass
+
+        # --- BLINDAGEM DE RECURSOS (NÍVEL SÊNIOR) ---
+        resources:
+          limits:
+            cpu: "500m"      # No máximo meio núcleo de processador (evita que o app torre o servidor)
+            memory: "256Mi"  # No máximo 256MB de RAM
+          requests:
+            cpu: "250m"      # Garante pelo menos 0.25 de um núcleo para iniciar
+            memory: "128Mi"  # Garante pelo menos 128MB de RAM

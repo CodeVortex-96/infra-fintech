@@ -1,0 +1,64 @@
+# 1. O CONTRATO DE ALUGUEL DO HD (PersistentVolumeClaim)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce # Só um nó pode escrever por vez (segurança de dados)
+  resources:
+    requests:
+      storage: 1Gi # 1 Gigabyte é mais que suficiente para milhões de linhas de extrato
+---
+# 2. O CÉREBRO DO BANCO DE DADOS (Deployment)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1 # Banco de dados relacional clássico roda em réplica única para evitar colisão de escrita
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15-alpine # Imagem ultra-leve e segura
+        env:
+        - name: POSTGRES_DB
+          value: fintech_db
+        - name: POSTGRES_USER
+          value: arquiteto_admin
+        - name: POSTGRES_PASSWORD
+          value: senha_secreta_fintech # Depois vamos jogar isso para um K8s Secret!
+        ports:
+        - containerPort: 5432 # Porta padrão do Postgres
+        
+        # Vincula a pasta interna do Postgres ao nosso PVC seguro
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+      
+      # Declara o volume que o container vai usar
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+---
+# 3. A PONTE DE REDE DO BANCO (Service)
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  type: ClusterIP # Tipo privado! NINGUÉM da internet consegue pingar esse banco, só a nossa API.
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

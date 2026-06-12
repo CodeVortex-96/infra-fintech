@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fintech-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Força qualquer HTTP virar HTTPS automaticamente!
+spec:
+  tls:
+  - hosts:
+    - fintech.local
+    secretName: fintech-tls-secret # Puxa o certificado que você acabou de criar no K8s
+  rules:
+  - host: fintech.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: fintech-api-service # Manda o tráfego para a sua API Flask
+            port:
+              number: 80

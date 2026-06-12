@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fintech-api-service
+spec:
+  type: LoadBalancer # Diz para o provedor de nuvem (ou Minikube) criar um IP público
+  selector:
+    app: fintech-api # O Service procura os containers que têm exatamente essa etiqueta
+  ports:
+    - protocol: TCP
+      port: 80        # A porta por onde o mundo vai acessar o serviço
+      targetPort: 8080 # A porta real onde o Flask tá rodando dentro do container
