@@ -57,8 +57,8 @@ jobs:
           kubectl apply -f deployment.yaml
           kubectl apply -f ingress.yaml
           
-          # 🚀 CORREÇÃO APLICADA: Nome do deployment ajustado para fintech-api-deployment
-          kubectl set image deployment/fintech-api-deployment fintech-app=fintech-app:${{ github.sha }}
+          # 🚀 CORREÇÃO FINAL: Nome do container alterado de 'fintech-app' para 'fintech-core'
+          kubectl set image deployment/fintech-api-deployment fintech-core=fintech-app:${{ github.sha }}
           
-          # Garante que o rollout espere o sucesso
+          # Garante que o rollout espere o sucesso no deployment correto
           kubectl rollout status deployment/fintech-api-deployment --timeout=60s
