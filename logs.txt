@@ -1,0 +1,534 @@
+
+==> Audit <==
+┌────────────┬──────────────────────────────────┬──────────┬────────────┬─────────┬─────────────────────┬─────────────────────┐
+│  COMMAND   │               ARGS               │ PROFILE  │    USER    │ VERSION │     START TIME      │      END TIME       │
+├────────────┼──────────────────────────────────┼──────────┼────────────┼─────────┼─────────────────────┼─────────────────────┤
+│ start      │ --driver=docker                  │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 17:51 -03 │ 11 Jun 26 17:54 -03 │
+│ completion │ fish                             │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 17:58 -03 │ 11 Jun 26 17:58 -03 │
+│ image      │ load fintech-app:latest          │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 17:58 -03 │ 11 Jun 26 17:58 -03 │
+│ service    │ fintech-api-service              │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 17:59 -03 │ 11 Jun 26 17:59 -03 │
+│ addons     │ enable ingress                   │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 18:21 -03 │ 11 Jun 26 18:22 -03 │
+│ ip         │                                  │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 18:31 -03 │ 11 Jun 26 18:31 -03 │
+│ image      │ load fintech-app:latest          │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 18:42 -03 │ 11 Jun 26 18:43 -03 │
+│ image      │ load fintech-app:latest          │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 18:55 -03 │ 11 Jun 26 18:56 -03 │
+│ image      │ load fintech-app:latest          │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 18:58 -03 │ 11 Jun 26 18:58 -03 │
+│ image      │ load fintech-app:v2              │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 21:12 -03 │ 11 Jun 26 21:13 -03 │
+│ image      │ load fintech-app:v3              │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 21:23 -03 │ 11 Jun 26 21:24 -03 │
+│ image      │ load fintech-app:v4              │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 21:34 -03 │ 11 Jun 26 21:34 -03 │
+│ image      │ load fintech-app:v5              │ minikube │ codevortex │ v1.38.1 │ 11 Jun 26 21:49 -03 │ 11 Jun 26 21:50 -03 │
+│ completion │ fish                             │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 15:28 -03 │ 12 Jun 26 15:28 -03 │
+│ start      │                                  │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 15:28 -03 │                     │
+│ start      │                                  │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 15:29 -03 │ 12 Jun 26 15:31 -03 │
+│ addons     │ enable ingress                   │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 15:32 -03 │ 12 Jun 26 15:32 -03 │
+│ docker-env │ minikube docker-env              │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 16:19 -03 │ 12 Jun 26 16:19 -03 │
+│ docker-env │ minikube docker-env --shell bash │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 16:30 -03 │ 12 Jun 26 16:30 -03 │
+│ docker-env │ minikube docker-env --shell bash │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 16:59 -03 │ 12 Jun 26 16:59 -03 │
+│ docker-env │ minikube docker-env --shell bash │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 17:24 -03 │ 12 Jun 26 17:24 -03 │
+│ docker-env │ minikube docker-env --shell bash │ minikube │ codevortex │ v1.38.1 │ 12 Jun 26 17:43 -03 │ 12 Jun 26 17:43 -03 │
+│ start      │                                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 15:18 -03 │                     │
+│ completion │ fish                             │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 15:21 -03 │ 15 Jun 26 15:21 -03 │
+│ delete     │                                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 15:21 -03 │ 15 Jun 26 15:21 -03 │
+│ start      │ --driver=docker                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 15:22 -03 │                     │
+│ start      │ --driver=docker                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:03 -03 │                     │
+│ delete     │                                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:06 -03 │ 15 Jun 26 16:06 -03 │
+│ delete     │                                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:06 -03 │ 15 Jun 26 16:06 -03 │
+│ start      │ --driver=none                    │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:09 -03 │                     │
+│ start      │ --driver=none                    │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:14 -03 │                     │
+│ delete     │                                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:49 -03 │ 15 Jun 26 16:49 -03 │
+│ start      │ --driver=docker                  │ minikube │ codevortex │ v1.38.1 │ 15 Jun 26 16:49 -03 │                     │
+└────────────┴──────────────────────────────────┴──────────┴────────────┴─────────┴─────────────────────┴─────────────────────┘
+
+
+==> Last Start <==
+Log file created at: 2026/06/15 16:49:57
+Running on machine: CodeVortex-96
+Binary: Built with gc go1.25.5 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0615 16:49:57.274463   36192 out.go:360] Setting OutFile to fd 1 ...
+I0615 16:49:57.274708   36192 out.go:413] isatty.IsTerminal(1) = true
+I0615 16:49:57.274712   36192 out.go:374] Setting ErrFile to fd 2...
+I0615 16:49:57.274717   36192 out.go:413] isatty.IsTerminal(2) = true
+I0615 16:49:57.274911   36192 root.go:338] Updating PATH: /home/codevortex/.minikube/bin
+I0615 16:49:57.275247   36192 out.go:368] Setting JSON to false
+I0615 16:49:57.293753   36192 start.go:134] hostinfo: {"hostname":"CodeVortex-96","uptime":255263,"bootTime":1781297735,"procs":216,"os":"linux","platform":"arch","platformFamily":"arch","platformVersion":"","kernelVersion":"7.0.11-zen1-1-zen","kernelArch":"x86_64","virtualizationSystem":"kvm","virtualizationRole":"host","hostId":"c0f8ee10-9362-48e3-a916-eb56311ed6f5"}
+I0615 16:49:57.293916   36192 start.go:144] virtualization: kvm host
+I0615 16:49:57.507176   36192 out.go:179] 😄  minikube v1.38.1 on Arch 
+I0615 16:49:57.582430   36192 notify.go:220] Checking for updates...
+I0615 16:49:57.582682   36192 driver.go:422] Setting default libvirt URI to qemu:///system
+I0615 16:49:57.779620   36192 docker.go:125] docker version: linux-29.5.2:
+I0615 16:49:57.779741   36192 cli_runner.go:164] Run: docker system info --format "{{json .}}"
+I0615 16:49:58.005039   36192 info.go:266] docker info: {ID:1dd45219-d649-4a6f-8213-0fdf248193d8 Containers:1 ContainersRunning:0 ContainersPaused:0 ContainersStopped:1 Images:96 Driver:overlayfs DriverStatus:[[driver-type io.containerd.snapshotter.v1]] SystemStatus:<nil> Plugins:{Volume:[local] Network:[bridge host ipvlan macvlan null overlay] Authorization:<nil> Log:[awslogs fluentd gcplogs gelf journald json-file local splunk syslog]} MemoryLimit:true SwapLimit:true KernelMemory:false KernelMemoryTCP:false CPUCfsPeriod:true CPUCfsQuota:true CPUShares:true CPUSet:true PidsLimit:true IPv4Forwarding:true BridgeNfIptables:false BridgeNfIP6Tables:false Debug:false NFd:22 OomKillDisable:false NGoroutines:47 SystemTime:2026-06-15 16:49:57.996046892 -0300 -03 LoggingDriver:json-file CgroupDriver:systemd NEventsListener:0 KernelVersion:7.0.11-zen1-1-zen OperatingSystem:Arch Linux OSType:linux Architecture:x86_64 IndexServerAddress:https://index.docker.io/v1/ RegistryConfig:{AllowNondistributableArtifactsCIDRs:[] AllowNondistributableArtifactsHostnames:[] InsecureRegistryCIDRs:[::1/128 127.0.0.0/8] IndexConfigs:{DockerIo:{Name:docker.io Mirrors:[] Secure:true Official:true}} Mirrors:[]} NCPU:4 MemTotal:5878112256 GenericResources:<nil> DockerRootDir:/var/lib/docker HTTPProxy: HTTPSProxy: NoProxy: Name:CodeVortex-96 Labels:[] ExperimentalBuild:false ServerVersion:29.5.2 ClusterStore: ClusterAdvertise: Runtimes:{Runc:{Path:runc}} DefaultRuntime:runc Swarm:{NodeID: NodeAddr: LocalNodeState:inactive ControlAvailable:false Error: RemoteManagers:<nil>} LiveRestoreEnabled:false Isolation: InitBinary:docker-init ContainerdCommit:{ID:64b425cf570b3b8dd1d4cc46da7c1fce65c6651a.m Expected:} RuncCommit:{ID: Expected:} InitCommit:{ID:de40ad0 Expected:} SecurityOptions:[name=seccomp,profile=builtin name=cgroupns] ProductLicense: Warnings:<nil> ServerErrors:[] ClientInfo:{Debug:false Plugins:[] Warnings:<nil>}}
+I0615 16:49:58.005100   36192 docker.go:320] overlay module found
+I0615 16:49:58.157756   36192 out.go:179] ✨  Using the docker driver based on user configuration
+I0615 16:49:58.335256   36192 start.go:310] selected driver: docker
+I0615 16:49:58.335272   36192 start.go:935] validating driver "docker" against <nil>
+I0615 16:49:58.335295   36192 start.go:946] status for docker: {Installed:true Healthy:true Running:false NeedsImprovement:false Error:<nil> Reason: Fix: Doc: Version:}
+I0615 16:49:58.335539   36192 cli_runner.go:164] Run: docker system info --format "{{json .}}"
+I0615 16:49:58.356596   36192 info.go:266] docker info: {ID:1dd45219-d649-4a6f-8213-0fdf248193d8 Containers:1 ContainersRunning:0 ContainersPaused:0 ContainersStopped:1 Images:96 Driver:overlayfs DriverStatus:[[driver-type io.containerd.snapshotter.v1]] SystemStatus:<nil> Plugins:{Volume:[local] Network:[bridge host ipvlan macvlan null overlay] Authorization:<nil> Log:[awslogs fluentd gcplogs gelf journald json-file local splunk syslog]} MemoryLimit:true SwapLimit:true KernelMemory:false KernelMemoryTCP:false CPUCfsPeriod:true CPUCfsQuota:true CPUShares:true CPUSet:true PidsLimit:true IPv4Forwarding:true BridgeNfIptables:false BridgeNfIP6Tables:false Debug:false NFd:22 OomKillDisable:false NGoroutines:47 SystemTime:2026-06-15 16:49:58.350002786 -0300 -03 LoggingDriver:json-file CgroupDriver:systemd NEventsListener:0 KernelVersion:7.0.11-zen1-1-zen OperatingSystem:Arch Linux OSType:linux Architecture:x86_64 IndexServerAddress:https://index.docker.io/v1/ RegistryConfig:{AllowNondistributableArtifactsCIDRs:[] AllowNondistributableArtifactsHostnames:[] InsecureRegistryCIDRs:[::1/128 127.0.0.0/8] IndexConfigs:{DockerIo:{Name:docker.io Mirrors:[] Secure:true Official:true}} Mirrors:[]} NCPU:4 MemTotal:5878112256 GenericResources:<nil> DockerRootDir:/var/lib/docker HTTPProxy: HTTPSProxy: NoProxy: Name:CodeVortex-96 Labels:[] ExperimentalBuild:false ServerVersion:29.5.2 ClusterStore: ClusterAdvertise: Runtimes:{Runc:{Path:runc}} DefaultRuntime:runc Swarm:{NodeID: NodeAddr: LocalNodeState:inactive ControlAvailable:false Error: RemoteManagers:<nil>} LiveRestoreEnabled:false Isolation: InitBinary:docker-init ContainerdCommit:{ID:64b425cf570b3b8dd1d4cc46da7c1fce65c6651a.m Expected:} RuncCommit:{ID: Expected:} InitCommit:{ID:de40ad0 Expected:} SecurityOptions:[name=seccomp,profile=builtin name=cgroupns] ProductLicense: Warnings:<nil> ServerErrors:[] ClientInfo:{Debug:false Plugins:[] Warnings:<nil>}}
+W0615 16:49:58.356708   36192 out.go:285] ❗  Starting v1.39.0, minikube will default to "containerd" container runtime. See #21973 for more info.
+I0615 16:49:58.356729   36192 start_flags.go:332] no existing cluster config was found, will generate one from the flags 
+I0615 16:49:58.357062   36192 start_flags.go:416] Using suggested 3072MB memory alloc based on sys=5605MB, container=5605MB
+I0615 16:49:58.393545   36192 start_flags.go:1000] Wait components to verify : map[apiserver:true system_pods:true]
+I0615 16:49:58.483413   36192 out.go:179] 📌  Using Docker driver with root privileges
+I0615 16:49:58.525302   36192 cni.go:83] Creating CNI manager for ""
+I0615 16:49:58.525345   36192 cni.go:157] "docker" driver + "docker" container runtime found on kubernetes v1.24+, recommending bridge
+I0615 16:49:58.525353   36192 start_flags.go:341] Found "bridge CNI" CNI - setting NetworkPlugin=cni
+I0615 16:49:58.525407   36192 start.go:358] cluster config:
+{Name:minikube KeepContext:false EmbedCerts:false MinikubeISO: KicBaseImage:gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 Memory:3072 CPUs:2 DiskSize:20000 Driver:docker HyperkitVpnKitSock: HyperkitVSockPorts:[] DockerEnv:[] ContainerVolumeMounts:[] InsecureRegistry:[] RegistryMirror:[] HostOnlyCIDR:192.168.59.1/24 HypervVirtualSwitch: HypervUseExternalSwitch:false HypervExternalAdapter: KVMNetwork:default KVMQemuURI:qemu:///system KVMGPU:false KVMHidden:false KVMNUMACount:1 APIServerPort:8443 DockerOpt:[] DisableDriverMounts:false NFSShare:[] NFSSharesRoot:/nfsshares UUID: NoVTXCheck:false DNSProxy:false HostDNSResolver:true HostOnlyNicType:virtio NatNicType:virtio SSHIPAddress: SSHUser:root SSHKey: SSHPort:22 KubernetesConfig:{KubernetesVersion:v1.35.1 ClusterName:minikube Namespace:default APIServerHAVIP: APIServerName:minikubeCA APIServerNames:[] APIServerIPs:[] DNSDomain:cluster.local ContainerRuntime:docker CRISocket: NetworkPlugin:cni FeatureGates: ServiceCIDR:10.96.0.0/12 ImageRepository: LoadBalancerStartIP: LoadBalancerEndIP: CustomIngressCert: RegistryAliases: ExtraOptions:[] ShouldLoadCachedImages:true EnableDefaultCNI:false CNI:} Nodes:[{Name: IP: Port:8443 KubernetesVersion:v1.35.1 ContainerRuntime:docker ControlPlane:true Worker:true}] Addons:map[] CustomAddonImages:map[] CustomAddonRegistries:map[] VerifyComponents:map[apiserver:true system_pods:true] StartHostTimeout:6m0s ScheduledStop:<nil> ExposedPorts:[] ListenAddress: Network: Subnet: MultiNodeRequested:false ExtraDisks:0 CertExpiration:26280h0m0s MountString: Mount9PVersion:9p2000.L MountGID:docker MountIP: MountMSize:262144 MountOptions:[] MountPort:0 MountType:9p MountUID:docker BinaryMirror: DisableOptimizations:false DisableMetrics:false DisableCoreDNSLog:false CustomQemuFirmwarePath: SocketVMnetClientPath: SocketVMnetPath: StaticIP: SSHAuthSock: SSHAgentPID:0 GPUs: AutoPauseInterval:1m0s Rosetta:false}
+I0615 16:49:58.592096   36192 out.go:179] 👍  Starting "minikube" primary control-plane node in "minikube" cluster
+I0615 16:49:58.633889   36192 cache.go:135] Beginning downloading kic base image for docker with docker
+I0615 16:49:58.675587   36192 out.go:179] 🚜  Pulling base image v0.0.50 ...
+I0615 16:49:58.717969   36192 preload.go:187] Checking if preload exists for k8s version v1.35.1 and runtime docker
+I0615 16:49:58.717969   36192 image.go:82] Checking for gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 in local docker daemon
+I0615 16:49:58.718400   36192 preload.go:202] Found local preload: /home/codevortex/.minikube/cache/preloaded-tarball/preloaded-images-k8s-v18-v1.35.1-docker-overlay2-amd64.tar.lz4
+I0615 16:49:58.718537   36192 cache.go:66] Caching tarball of preloaded images
+I0615 16:49:58.719012   36192 preload.go:250] Found /home/codevortex/.minikube/cache/preloaded-tarball/preloaded-images-k8s-v18-v1.35.1-docker-overlay2-amd64.tar.lz4 in cache, skipping download
+I0615 16:49:58.719053   36192 cache.go:69] Finished verifying existence of preloaded tar for v1.35.1 on docker
+I0615 16:49:58.719685   36192 profile.go:143] Saving config to /home/codevortex/.minikube/profiles/minikube/config.json ...
+I0615 16:49:58.719712   36192 lock.go:61] WriteFile acquiring /home/codevortex/.minikube/profiles/minikube/config.json: {Name:mk22d2dc5844dfa67040f7277d4e5499e28a6241 Timeout:1m0s Delay:500ms}
+I0615 16:50:00.127892   36192 cache.go:164] Downloading gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 to local cache
+I0615 16:50:00.128109   36192 image.go:66] Checking for gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 in local cache directory
+I0615 16:50:00.155197   36192 image.go:69] Found gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 in local cache directory, skipping pull
+I0615 16:50:00.155215   36192 image.go:138] gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 exists in cache, skipping pull
+I0615 16:50:00.155246   36192 cache.go:167] successfully saved gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 as a tarball
+I0615 16:50:00.155257   36192 cache.go:177] Loading gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 from local cache
+I0615 16:50:25.800160   36192 cache.go:179] successfully loaded and using gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 from cached tarball
+I0615 16:50:25.800184   36192 cache.go:244] Successfully downloaded all kic artifacts
+I0615 16:50:25.800227   36192 start.go:359] acquireMachinesLock for minikube: {Name:mk7ce8d23cb3a08c3a21aaf38b5b720f591b4f67 Timeout:10m0s Delay:500ms}
+I0615 16:50:25.800277   36192 start.go:363] duration metric: took 34.745µs to acquireMachinesLock for "minikube"
+I0615 16:50:25.816763   36192 start.go:92] Provisioning new machine with config: &{Name:minikube KeepContext:false EmbedCerts:false MinikubeISO: KicBaseImage:gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 Memory:3072 CPUs:2 DiskSize:20000 Driver:docker HyperkitVpnKitSock: HyperkitVSockPorts:[] DockerEnv:[] ContainerVolumeMounts:[] InsecureRegistry:[] RegistryMirror:[] HostOnlyCIDR:192.168.59.1/24 HypervVirtualSwitch: HypervUseExternalSwitch:false HypervExternalAdapter: KVMNetwork:default KVMQemuURI:qemu:///system KVMGPU:false KVMHidden:false KVMNUMACount:1 APIServerPort:8443 DockerOpt:[] DisableDriverMounts:false NFSShare:[] NFSSharesRoot:/nfsshares UUID: NoVTXCheck:false DNSProxy:false HostDNSResolver:true HostOnlyNicType:virtio NatNicType:virtio SSHIPAddress: SSHUser:root SSHKey: SSHPort:22 KubernetesConfig:{KubernetesVersion:v1.35.1 ClusterName:minikube Namespace:default APIServerHAVIP: APIServerName:minikubeCA APIServerNames:[] APIServerIPs:[] DNSDomain:cluster.local ContainerRuntime:docker CRISocket: NetworkPlugin:cni FeatureGates: ServiceCIDR:10.96.0.0/12 ImageRepository: LoadBalancerStartIP: LoadBalancerEndIP: CustomIngressCert: RegistryAliases: ExtraOptions:[] ShouldLoadCachedImages:true EnableDefaultCNI:false CNI:} Nodes:[{Name: IP: Port:8443 KubernetesVersion:v1.35.1 ContainerRuntime:docker ControlPlane:true Worker:true}] Addons:map[] CustomAddonImages:map[] CustomAddonRegistries:map[] VerifyComponents:map[apiserver:true system_pods:true] StartHostTimeout:6m0s ScheduledStop:<nil> ExposedPorts:[] ListenAddress: Network: Subnet: MultiNodeRequested:false ExtraDisks:0 CertExpiration:26280h0m0s MountString: Mount9PVersion:9p2000.L MountGID:docker MountIP: MountMSize:262144 MountOptions:[] MountPort:0 MountType:9p MountUID:docker BinaryMirror: DisableOptimizations:false DisableMetrics:false DisableCoreDNSLog:false CustomQemuFirmwarePath: SocketVMnetClientPath: SocketVMnetPath: StaticIP: SSHAuthSock: SSHAgentPID:0 GPUs: AutoPauseInterval:1m0s Rosetta:false} &{Name: IP: Port:8443 KubernetesVersion:v1.35.1 ContainerRuntime:docker ControlPlane:true Worker:true}
+I0615 16:50:25.816845   36192 start.go:124] createHost starting for "" (driver="docker")
+I0615 16:50:25.967229   36192 out.go:252] 🔥  Creating docker container (CPUs=2, Memory=3072MB) ...
+I0615 16:50:25.968086   36192 start.go:158] libmachine.API.Create for "minikube" (driver="docker")
+I0615 16:50:25.968164   36192 client.go:173] LocalClient.Create starting
+I0615 16:50:26.058240   36192 main.go:144] libmachine: Reading certificate data from /home/codevortex/.minikube/certs/ca.pem
+I0615 16:50:26.077309   36192 main.go:144] libmachine: Decoding PEM data...
+I0615 16:50:26.077476   36192 main.go:144] libmachine: Parsing certificate...
+I0615 16:50:26.077771   36192 main.go:144] libmachine: Reading certificate data from /home/codevortex/.minikube/certs/cert.pem
+I0615 16:50:26.095718   36192 main.go:144] libmachine: Decoding PEM data...
+I0615 16:50:26.095796   36192 main.go:144] libmachine: Parsing certificate...
+I0615 16:50:26.151774   36192 cli_runner.go:164] Run: docker network inspect minikube --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}"
+W0615 16:50:26.167886   36192 cli_runner.go:211] docker network inspect minikube --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}" returned with exit code 1
+I0615 16:50:26.167925   36192 network_create.go:285] running [docker network inspect minikube] to gather additional debugging logs...
+I0615 16:50:26.167936   36192 cli_runner.go:164] Run: docker network inspect minikube
+W0615 16:50:26.199240   36192 cli_runner.go:211] docker network inspect minikube returned with exit code 1
+I0615 16:50:26.199291   36192 network_create.go:288] error running [docker network inspect minikube]: docker network inspect minikube: exit status 1
+stdout:
+[]
+
+stderr:
+Error response from daemon: network minikube not found
+I0615 16:50:26.199317   36192 network_create.go:290] output of [docker network inspect minikube]: -- stdout --
+[]
+
+-- /stdout --
+** stderr ** 
+Error response from daemon: network minikube not found
+
+** /stderr **
+I0615 16:50:26.199398   36192 cli_runner.go:164] Run: docker network inspect bridge --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}"
+I0615 16:50:26.260015   36192 network.go:205] using free private subnet 192.168.49.0/24: &{IP:192.168.49.0 Netmask:255.255.255.0 Prefix:24 CIDR:192.168.49.0/24 Gateway:192.168.49.1 ClientMin:192.168.49.2 ClientMax:192.168.49.254 Broadcast:192.168.49.255 IsPrivate:true Interface:{IfaceName: IfaceIPv4: IfaceMTU:0 IfaceMAC:} reservation:0xc000720498}
+I0615 16:50:26.260056   36192 network_create.go:125] attempt to create docker network minikube 192.168.49.0/24 with gateway 192.168.49.1 and MTU of 1500 ...
+I0615 16:50:26.260120   36192 cli_runner.go:164] Run: docker network create --driver=bridge --subnet=192.168.49.0/24 --gateway=192.168.49.1 -o --ip-masq -o --icc -o com.docker.network.driver.mtu=1500 --label=created_by.minikube.sigs.k8s.io=true --label=name.minikube.sigs.k8s.io=minikube minikube
+I0615 16:50:27.802413   36192 cli_runner.go:217] Completed: docker network create --driver=bridge --subnet=192.168.49.0/24 --gateway=192.168.49.1 -o --ip-masq -o --icc -o com.docker.network.driver.mtu=1500 --label=created_by.minikube.sigs.k8s.io=true --label=name.minikube.sigs.k8s.io=minikube minikube: (1.542264849s)
+I0615 16:50:27.802451   36192 network_create.go:109] docker network minikube 192.168.49.0/24 created
+I0615 16:50:27.802468   36192 kic.go:120] calculated static IP "192.168.49.2" for the "minikube" container
+I0615 16:50:27.802532   36192 cli_runner.go:164] Run: docker ps -a --format {{.Names}}
+I0615 16:50:27.860232   36192 cli_runner.go:164] Run: docker volume create minikube --label name.minikube.sigs.k8s.io=minikube --label created_by.minikube.sigs.k8s.io=true
+I0615 16:50:28.293407   36192 oci.go:102] Successfully created a docker volume minikube
+I0615 16:50:28.293564   36192 cli_runner.go:164] Run: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib
+W0615 16:50:33.669560   36192 cli_runner.go:211] docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib returned with exit code 125
+I0615 16:50:33.669574   36192 cli_runner.go:217] Completed: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib: (5.375970939s)
+I0615 16:50:33.669614   36192 client.go:176] duration metric: took 7.701433142s to LocalClient.Create
+I0615 16:50:35.670730   36192 ssh_runner.go:194] Run: sh -c "df -h /var | awk 'NR==2{print $5}'"
+I0615 16:50:35.670872   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:35.685283   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:50:35.685334   36192 retry.go:85] will retry after 100ms: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:35.831058   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:35.852770   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:50:36.319564   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:36.338537   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:50:36.751844   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:36.771980   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+W0615 16:50:36.772061   36192 start.go:267] error running df -h /var: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+
+W0615 16:50:36.772067   36192 start.go:234] error getting percentage of /var that is free: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:36.772120   36192 ssh_runner.go:194] Run: sh -c "df -BG /var | awk 'NR==2{print $4}'"
+I0615 16:50:36.772143   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:36.785840   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:50:36.929955   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:36.949784   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:50:37.401802   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:37.416229   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:50:37.905857   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:50:37.919126   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+W0615 16:50:37.919161   36192 start.go:282] error running df -BG /var: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+
+W0615 16:50:37.919166   36192 start.go:239] error getting GiB of /var that is available: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:37.919170   36192 start.go:127] duration metric: took 12.102319185s to createHost
+I0615 16:50:37.919175   36192 start.go:82] releasing machines lock for "minikube", held for 12.118889547s
+W0615 16:50:37.919188   36192 start.go:726] error starting host: creating host: create: creating: setting up container node: preparing volume for minikube container: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib: exit status 125
+stdout:
+
+stderr:
+docker: Error response from daemon: failed to set up container networking: failed to create endpoint minikube-preload-sidecar on network bridge: failed to add the host (vethda7032e) <=> sandbox (veth5a70910) pair interfaces: operation not supported
+
+Run 'docker run --help' for more information
+I0615 16:50:37.919552   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:37.934201   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:37.934235   36192 delete.go:82] Unable to get host status for minikube, assuming it has already been deleted: state: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+W0615 16:50:37.934301   36192 out.go:285] 🤦  StartHost failed, but will try again: creating host: create: creating: setting up container node: preparing volume for minikube container: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib: exit status 125
+stdout:
+
+stderr:
+docker: Error response from daemon: failed to set up container networking: failed to create endpoint minikube-preload-sidecar on network bridge: failed to add the host (vethda7032e) <=> sandbox (veth5a70910) pair interfaces: operation not supported
+
+Run 'docker run --help' for more information
+
+I0615 16:50:37.934350   36192 start.go:742] Will try again in 5 seconds ...
+I0615 16:50:42.934495   36192 start.go:359] acquireMachinesLock for minikube: {Name:mk7ce8d23cb3a08c3a21aaf38b5b720f591b4f67 Timeout:10m0s Delay:500ms}
+I0615 16:50:42.934671   36192 start.go:363] duration metric: took 102.336µs to acquireMachinesLock for "minikube"
+I0615 16:50:42.934703   36192 start.go:95] Skipping create...Using existing machine configuration
+I0615 16:50:42.934714   36192 fix.go:53] fixHost starting: 
+I0615 16:50:42.935307   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:42.950344   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:42.950368   36192 fix.go:111] recreateIfNeeded on minikube: state= err=unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:42.950377   36192 fix.go:116] machineExists: false. err=machine does not exist
+I0615 16:50:43.013164   36192 out.go:179] 🤷  docker "minikube" container is missing, will recreate.
+I0615 16:50:43.063664   36192 delete.go:124] DEMOLISHING minikube ...
+I0615 16:50:43.063975   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:43.083198   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+W0615 16:50:43.083333   36192 stop.go:83] unable to get state: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:43.083360   36192 delete.go:128] stophost failed (probably ok): ssh power off: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:43.084101   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:43.098754   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:43.098780   36192 delete.go:82] Unable to get host status for minikube, assuming it has already been deleted: state: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:43.098813   36192 cli_runner.go:164] Run: docker container inspect -f {{.Id}} minikube
+W0615 16:50:43.111614   36192 cli_runner.go:211] docker container inspect -f {{.Id}} minikube returned with exit code 1
+I0615 16:50:43.111631   36192 kic.go:370] could not find the container minikube to remove it. will try anyways
+I0615 16:50:43.111672   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:43.125131   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+W0615 16:50:43.125149   36192 oci.go:83] error getting container status, will try to delete anyways: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:43.125204   36192 cli_runner.go:164] Run: docker exec --privileged -t minikube /bin/bash -c "sudo init 0"
+W0615 16:50:43.137231   36192 cli_runner.go:211] docker exec --privileged -t minikube /bin/bash -c "sudo init 0" returned with exit code 1
+I0615 16:50:43.137249   36192 oci.go:658] error shutdown minikube: docker exec --privileged -t minikube /bin/bash -c "sudo init 0": exit status 1
+stdout:
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:44.138252   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:44.151122   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:44.151139   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:44.151151   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:50:44.151166   36192 retry.go:85] will retry after 400ms: couldn't verify container is exited: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:44.508742   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:44.520817   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:44.520853   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:44.520857   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:50:45.292549   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:45.305129   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:45.305158   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:45.305161   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:50:46.810835   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:46.824803   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:46.824821   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:46.824824   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:50:49.131188   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:49.145068   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:49.145086   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:49.145090   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:50:51.325682   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:51.338375   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:51.338399   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:51.338403   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:50:53.802571   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:50:53.821555   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:50:53.821585   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:50:53.821591   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:51:00.017532   36192 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+W0615 16:51:00.033424   36192 cli_runner.go:211] docker container inspect minikube --format={{.State.Status}} returned with exit code 1
+I0615 16:51:00.033444   36192 oci.go:670] temporary error verifying shutdown: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:51:00.033448   36192 oci.go:672] temporary error: container minikube status is  but expect it to be exited
+I0615 16:51:00.033466   36192 oci.go:87] couldn't shut down minikube (might be okay): verify shutdown: couldn't verify container is exited: unknown state "minikube": docker container inspect minikube --format={{.State.Status}}: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+ 
+I0615 16:51:00.033500   36192 cli_runner.go:164] Run: docker rm -f -v minikube
+I0615 16:51:00.048889   36192 cli_runner.go:164] Run: docker container inspect -f {{.Id}} minikube
+W0615 16:51:00.062484   36192 cli_runner.go:211] docker container inspect -f {{.Id}} minikube returned with exit code 1
+I0615 16:51:00.062530   36192 cli_runner.go:164] Run: docker network inspect minikube --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}"
+I0615 16:51:00.077026   36192 cli_runner.go:164] Run: docker network rm minikube
+I0615 16:51:00.412881   36192 fix.go:123] Sleeping 1 second for extra luck!
+I0615 16:51:01.412986   36192 start.go:124] createHost starting for "" (driver="docker")
+I0615 16:51:01.483367   36192 out.go:252] 🔥  Creating docker container (CPUs=2, Memory=3072MB) ...
+I0615 16:51:01.483507   36192 start.go:158] libmachine.API.Create for "minikube" (driver="docker")
+I0615 16:51:01.483523   36192 client.go:173] LocalClient.Create starting
+I0615 16:51:01.483595   36192 main.go:144] libmachine: Reading certificate data from /home/codevortex/.minikube/certs/ca.pem
+I0615 16:51:01.483619   36192 main.go:144] libmachine: Decoding PEM data...
+I0615 16:51:01.483630   36192 main.go:144] libmachine: Parsing certificate...
+I0615 16:51:01.483671   36192 main.go:144] libmachine: Reading certificate data from /home/codevortex/.minikube/certs/cert.pem
+I0615 16:51:01.483685   36192 main.go:144] libmachine: Decoding PEM data...
+I0615 16:51:01.483693   36192 main.go:144] libmachine: Parsing certificate...
+I0615 16:51:01.483857   36192 cli_runner.go:164] Run: docker network inspect minikube --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}"
+W0615 16:51:01.498870   36192 cli_runner.go:211] docker network inspect minikube --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}" returned with exit code 1
+I0615 16:51:01.498945   36192 network_create.go:285] running [docker network inspect minikube] to gather additional debugging logs...
+I0615 16:51:01.498961   36192 cli_runner.go:164] Run: docker network inspect minikube
+W0615 16:51:01.517903   36192 cli_runner.go:211] docker network inspect minikube returned with exit code 1
+I0615 16:51:01.517919   36192 network_create.go:288] error running [docker network inspect minikube]: docker network inspect minikube: exit status 1
+stdout:
+[]
+
+stderr:
+Error response from daemon: network minikube not found
+I0615 16:51:01.517929   36192 network_create.go:290] output of [docker network inspect minikube]: -- stdout --
+[]
+
+-- /stdout --
+** stderr ** 
+Error response from daemon: network minikube not found
+
+** /stderr **
+I0615 16:51:01.517997   36192 cli_runner.go:164] Run: docker network inspect bridge --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}"
+I0615 16:51:01.548702   36192 network.go:205] using free private subnet 192.168.49.0/24: &{IP:192.168.49.0 Netmask:255.255.255.0 Prefix:24 CIDR:192.168.49.0/24 Gateway:192.168.49.1 ClientMin:192.168.49.2 ClientMax:192.168.49.254 Broadcast:192.168.49.255 IsPrivate:true Interface:{IfaceName: IfaceIPv4: IfaceMTU:0 IfaceMAC:} reservation:0xc000720038}
+I0615 16:51:01.548760   36192 network_create.go:125] attempt to create docker network minikube 192.168.49.0/24 with gateway 192.168.49.1 and MTU of 1500 ...
+I0615 16:51:01.548831   36192 cli_runner.go:164] Run: docker network create --driver=bridge --subnet=192.168.49.0/24 --gateway=192.168.49.1 -o --ip-masq -o --icc -o com.docker.network.driver.mtu=1500 --label=created_by.minikube.sigs.k8s.io=true --label=name.minikube.sigs.k8s.io=minikube minikube
+I0615 16:51:01.796321   36192 network_create.go:109] docker network minikube 192.168.49.0/24 created
+I0615 16:51:01.796336   36192 kic.go:120] calculated static IP "192.168.49.2" for the "minikube" container
+I0615 16:51:01.796385   36192 cli_runner.go:164] Run: docker ps -a --format {{.Names}}
+I0615 16:51:01.820397   36192 cli_runner.go:164] Run: docker volume create minikube --label name.minikube.sigs.k8s.io=minikube --label created_by.minikube.sigs.k8s.io=true
+I0615 16:51:01.841926   36192 oci.go:102] Successfully created a docker volume minikube
+I0615 16:51:01.841977   36192 cli_runner.go:164] Run: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib
+W0615 16:51:03.832711   36192 cli_runner.go:211] docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib returned with exit code 125
+I0615 16:51:03.832726   36192 cli_runner.go:217] Completed: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib: (1.990696944s)
+I0615 16:51:03.832749   36192 client.go:176] duration metric: took 2.349222334s to LocalClient.Create
+I0615 16:51:05.833138   36192 ssh_runner.go:194] Run: sh -c "df -h /var | awk 'NR==2{print $5}'"
+I0615 16:51:05.833177   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:05.853226   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:05.853332   36192 retry.go:85] will retry after 100ms: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:51:05.988571   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:06.000598   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:06.398107   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:06.414201   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:07.164481   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:07.183115   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:07.661821   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:07.681245   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+W0615 16:51:07.681406   36192 start.go:267] error running df -h /var: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+
+W0615 16:51:07.681453   36192 start.go:234] error getting percentage of /var that is free: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:51:07.681649   36192 ssh_runner.go:194] Run: sh -c "df -BG /var | awk 'NR==2{print $4}'"
+I0615 16:51:07.681762   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:07.695931   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:08.026595   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:08.047097   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:08.560787   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:08.581961   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:09.260844   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:09.282739   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+W0615 16:51:09.282774   36192 start.go:282] error running df -BG /var: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+
+W0615 16:51:09.282783   36192 start.go:239] error getting GiB of /var that is available: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:51:09.282788   36192 start.go:127] duration metric: took 7.869785982s to createHost
+I0615 16:51:09.282830   36192 ssh_runner.go:194] Run: sh -c "df -h /var | awk 'NR==2{print $5}'"
+I0615 16:51:09.282848   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:09.296003   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:09.612140   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:09.626393   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:10.155119   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:10.177191   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:10.637045   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:10.653535   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+W0615 16:51:10.653664   36192 start.go:267] error running df -h /var: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+
+W0615 16:51:10.653673   36192 start.go:234] error getting percentage of /var that is free: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:51:10.653768   36192 ssh_runner.go:194] Run: sh -c "df -BG /var | awk 'NR==2{print $4}'"
+I0615 16:51:10.653807   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:10.675767   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:10.992330   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:11.009016   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:11.302456   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:11.316212   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+I0615 16:51:12.009480   36192 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+W0615 16:51:12.024895   36192 cli_runner.go:211] docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube returned with exit code 1
+W0615 16:51:12.024934   36192 start.go:282] error running df -BG /var: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+
+W0615 16:51:12.024941   36192 start.go:239] error getting GiB of /var that is available: NewSession: new client: new client: Error creating new ssh host from driver: Error getting ssh port for driver: get ssh host-port: get port 22 for "minikube": docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube: exit status 1
+stdout:
+
+
+stderr:
+Error response from daemon: No such container: minikube
+I0615 16:51:12.024947   36192 fix.go:55] duration metric: took 29.090238127s for fixHost
+I0615 16:51:12.024951   36192 start.go:82] releasing machines lock for "minikube", held for 29.090269886s
+W0615 16:51:12.025003   36192 out.go:285] 😿  Failed to start docker container. Running "minikube delete" may fix it: recreate: creating host: create: creating: setting up container node: preparing volume for minikube container: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib: exit status 125
+stdout:
+
+stderr:
+docker: Error response from daemon: failed to set up container networking: failed to create endpoint minikube-preload-sidecar on network bridge: failed to add the host (veth8ff4de4) <=> sandbox (vethce2e37c) pair interfaces: operation not supported
+
+Run 'docker run --help' for more information
+
+I0615 16:51:12.119975   36192 out.go:203] 
+W0615 16:51:12.146616   36192 out.go:285] ❌  Exiting due to GUEST_PROVISION: error provisioning guest: Failed to start host: recreate: creating host: create: creating: setting up container node: preparing volume for minikube container: docker run --rm --name minikube-preload-sidecar --label created_by.minikube.sigs.k8s.io=true --label name.minikube.sigs.k8s.io=minikube --entrypoint /usr/bin/test -v minikube:/var gcr.io/k8s-minikube/kicbase:v0.0.50@sha256:eb4fec00e8ad70adf8e6436f195cc429825ffb85f95afcdb5d8d9deb576f3e93 -d /var/lib: exit status 125
+stdout:
+
+stderr:
+docker: Error response from daemon: failed to set up container networking: failed to create endpoint minikube-preload-sidecar on network bridge: failed to add the host (veth8ff4de4) <=> sandbox (vethce2e37c) pair interfaces: operation not supported
+
+Run 'docker run --help' for more information
+
+W0615 16:51:12.146697   36192 out.go:285] 
+W0615 16:51:12.147999   36192 out.go:308] [31m╭───────────────────────────────────────────────────────────────────────────────────────────╮[0m
+[31m│[0m                                                                                           [31m│[0m
+[31m│[0m    😿  If the above advice does not help, please let us know:                             [31m│[0m
+[31m│[0m    👉  https://github.com/kubernetes/minikube/issues/new/choose                           [31m│[0m
+[31m│[0m                                                                                           [31m│[0m
+[31m│[0m    Please run `minikube logs --file=logs.txt` and attach logs.txt to the GitHub issue.    [31m│[0m
+[31m│[0m                                                                                           [31m│[0m
+[31m╰───────────────────────────────────────────────────────────────────────────────────────────╯[0m
+I0615 16:51:12.246678   36192 out.go:203] 
+
+

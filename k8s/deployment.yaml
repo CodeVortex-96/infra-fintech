@@ -5,7 +5,13 @@ metadata:
   labels:
     app: fintech-api
 spec:
-  replicas: 2 # Diz para o K8s manter SEMPRE 2 containers rodando em paralelo para alta disponibilidade
+  replicas: 2
+  # Estratégia Sênior: Garante que nunca fiquemos sem pods durante um deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: fintech-api
@@ -16,12 +22,27 @@ spec:
     spec:
       containers:
       - name: fintech-core
-        image: fintech-app:v5
-        imagePullPolicy: Never # Força o Minikube a usar a imagem que você buildou localmente
+        image: fintech-app:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         
-        # --- INJEÇÃO DE VARIÁVEIS DE AMBIENTE SEGURAS (COFRE K8S) ---
+        # --- HEALTH CHECKS (O CORAÇÃO DO K8S) ---
+        # Liveness: Se falhar, o K8s mata e reinicia o pod
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        # Readiness: Se falhar, o K8s para de mandar tráfego para este pod
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
         env:
         - name: DB_HOST
           value: "postgres-service"
@@ -38,11 +59,10 @@ spec:
               name: fintech-db-secrets
               key: db-pass
 
-        # --- BLINDAGEM DE RECURSOS (NÍVEL SÊNIOR) ---
         resources:
           limits:
-            cpu: "500m"      # No máximo meio núcleo de processador (evita que o app torre o servidor)
-            memory: "256Mi"  # No máximo 256MB de RAM
+            cpu: "500m"
+            memory: "512Mi"
           requests:
-            cpu: "250m"      # Garante pelo menos 0.25 de um núcleo para iniciar
-            memory: "128Mi"  # Garante pelo menos 128MB de RAM
+            cpu: "250m"
+            memory: "128Mi"

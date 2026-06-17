@@ -4,4 +4,8 @@ __pycache__/
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
-certs/
+*.key
+*.crt
+*.pem
+.env
+k8s/secret.yaml

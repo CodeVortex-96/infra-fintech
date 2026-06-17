@@ -31,34 +31,33 @@ jobs:
   # ==========================================
   # ESTÁGIO 2: DEPLOY CONTÍNUO (CD)
   # ==========================================
-  deploy-local-cluster:
-    name: ☸️ Automated Deployment (Minikube)
+deploy-local-cluster:
+    name: ☸️ Automated Deployment (k3d)
     needs: lint-and-test 
-    runs-on: self-hosted 
-
+    runs-on: self-hosted # Mantenha se o seu runner for seu PC, mas remova o Minikube
+    
     steps:
       - name: Check out do código
         uses: actions/checkout@v3
 
-      - name: Buildar e Atualizar no Kubernetes Local
+      - name: Buildar e Atualizar no Cluster
         run: |
-          # Força o Minikube a gerar sintaxe Bash
-          eval $(minikube -p minikube docker-env --shell bash)
-
-          # Builda a imagem
+          # 1. Builda a imagem direto no docker do seu PC (onde o runner está rodando)
           cd app
           docker build -t fintech-app:${{ github.sha }} .
 
-          # Aplica os manifestos
+          # 2. Se o k3d precisar da imagem, use o comando de import dele
+          k3d image import fintech-app:${{ github.sha }} -c fintech-cluster
+
+          # 3. Aplica os manifestos (REMOVI O secret.yaml POR SEGURANÇA)
           cd ../k8s
-          kubectl apply -f secret.yaml
           kubectl apply -f postgres.yaml
           kubectl apply -f service.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f ingress.yaml
           
-          # 🚀 CORREÇÃO FINAL: Nome do container alterado de 'fintech-app' para 'fintech-core'
+          # 4. Atualiza a imagem
           kubectl set image deployment/fintech-api-deployment fintech-core=fintech-app:${{ github.sha }}
           
-          # Garante que o rollout espere o sucesso no deployment correto
-          kubectl rollout status deployment/fintech-api-deployment --timeout=60s
+          # 5. Rollout status
+          kubectl rollout status deployment/fintech-api-deployment --timeout=60s 
