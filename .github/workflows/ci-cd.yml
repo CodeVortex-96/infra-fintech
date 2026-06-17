@@ -1,14 +1,10 @@
 name: Fintech Enterprise CI/CD Pipeline
 
-# GATILHO: Dispara a esteira toda vez que houver um 'push' na branch principal
 on:
   push:
     branches: [ main, master ]
 
 jobs:
-  # ==========================================
-  # ESTÁGIO 1: INTEGRAÇÃO CONTÍNUA (CI)
-  # ==========================================
   lint-and-test:
     name: 🛡️ Code Quality & Syntax Verification
     runs-on: ubuntu-latest 
@@ -28,13 +24,10 @@ jobs:
           pip install flake8
           flake8 app/src/main.py --count --select=E9,F63,F7,F82 --show-source --statistics
 
-  # ==========================================
-  # ESTÁGIO 2: DEPLOY CONTÍNUO (CD)
-  # ==========================================
-deploy-local-cluster:
+  deploy-local-cluster:
     name: ☸️ Automated Deployment (k3d)
     needs: lint-and-test 
-    runs-on: self-hosted # Mantenha se o seu runner for seu PC, mas remova o Minikube
+    runs-on: self-hosted
     
     steps:
       - name: Check out do código
@@ -42,22 +35,13 @@ deploy-local-cluster:
 
       - name: Buildar e Atualizar no Cluster
         run: |
-          # 1. Builda a imagem direto no docker do seu PC (onde o runner está rodando)
           cd app
           docker build -t fintech-app:${{ github.sha }} .
-
-          # 2. Se o k3d precisar da imagem, use o comando de import dele
           k3d image import fintech-app:${{ github.sha }} -c fintech-cluster
-
-          # 3. Aplica os manifestos (REMOVI O secret.yaml POR SEGURANÇA)
           cd ../k8s
           kubectl apply -f postgres.yaml
           kubectl apply -f service.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f ingress.yaml
-          
-          # 4. Atualiza a imagem
           kubectl set image deployment/fintech-api-deployment fintech-core=fintech-app:${{ github.sha }}
-          
-          # 5. Rollout status
-          kubectl rollout status deployment/fintech-api-deployment --timeout=60s 
+          kubectl rollout status deployment/fintech-api-deployment --timeout=60s
