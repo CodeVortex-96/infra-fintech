@@ -22,10 +22,11 @@ jobs:
       - name: Validar Sintaxe do Código (Anti-Bug de Indentação)
         run: |
           pip install flake8
+          # Verifica erros de sintaxe e indentação antes de qualquer coisa
           flake8 app/src/main.py --count --select=E9,F63,F7,F82 --show-source --statistics
 
   deploy-local-cluster:
-    name: ☸️ Automated Deployment (k3d)
+    name: ☸️ Automated Deployment (k3d + Terraform)
     needs: lint-and-test 
     runs-on: self-hosted
     
@@ -33,15 +34,31 @@ jobs:
       - name: Check out do código
         uses: actions/checkout@v3
 
+      - name: Terraform Provisioning
+        run: |
+          # Inicializa e aplica a infraestrutura definida nos seus arquivos .tf
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
+
       - name: Buildar e Atualizar no Cluster
         run: |
+          # 1. Builda a imagem da aplicação com o hash do commit atual
           cd app
           docker build -t fintech-app:${{ github.sha }} .
+          
+          # 2. Importa a imagem buildada diretamente para o cluster k3d
           k3d image import fintech-app:${{ github.sha }} -c fintech-cluster
+          
+          # 3. Aplica os manifestos de infra e app (banco, serviço, deploy, ingress)
           cd ../k8s
           kubectl apply -f postgres.yaml
           kubectl apply -f service.yaml
           kubectl apply -f deployment.yaml
           kubectl apply -f ingress.yaml
+          
+          # 4. Atualiza a imagem no deployment rodando no cluster
           kubectl set image deployment/fintech-api-deployment fintech-core=fintech-app:${{ github.sha }}
+          
+          # 5. Monitora até que o rollout seja concluído com sucesso
           kubectl rollout status deployment/fintech-api-deployment --timeout=60s
