@@ -1,0 +1,38 @@
+apiVersion: argopd.argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fintech-production
+  namespace: argocd
+  # Adicionamos uma finalizer para garantir que, se deletar a app, os recursos sejam limpos corretamente
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/SEU_USUARIO/infra-fintech.git'
+    path: k8s
+    targetRevision: HEAD
+    # Otimização: se você estivesse usando Helm ou Kustomize, isso viria aqui.
+    # Como você usa manifestos puros, mantemos assim.
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    # A MÁGICA DA RESILIÊNCIA:
+    automated:
+      selfHeal: true # Corrige desvios (drift) no cluster
+      prune: true    # Deleta recursos no cluster que não estão mais no Git
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true        # Cria o namespace se não existir
+      - PruneLast=true              # Deleta recursos apenas no final do sync (mais seguro)
+      - RespectIgnoreDifferences=true # Evita loops de sync em campos dinâmicos
+      - ApplyOutOfSyncOnly=true     # Otimiza o sync focando apenas no que mudou
+  
+  # Adicionamos a estratégia de retry para falhas de rede ou banco bloqueado
+  retry:
+    limit: 5
+    backoff:
+      duration: 5s
+      factor: 2
+      maxDuration: 1m

@@ -5,10 +5,10 @@ metadata:
   name: postgres-pvc
 spec:
   accessModes:
-    - ReadWriteOnce # Só um nó pode escrever por vez (segurança de dados)
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi # 1 Gigabyte é mais que suficiente para milhões de linhas de extrato
+      storage: 1Gi
 ---
 # 2. O CÉREBRO DO BANCO DE DADOS (Deployment)
 apiVersion: apps/v1
@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: postgres-deployment
 spec:
-  replicas: 1 # Banco de dados relacional clássico roda em réplica única para evitar colisão de escrita
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
@@ -27,23 +27,25 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:15-alpine # Imagem ultra-leve e segura
+        image: postgres:15-alpine
         env:
         - name: POSTGRES_DB
           value: fintech_db
         - name: POSTGRES_USER
-          value: arquiteto_admin
+          valueFrom:
+            secretKeyRef:
+              name: fintech-db-secrets
+              key: db-user
         - name: POSTGRES_PASSWORD
-          value: senha_secreta_fintech # Depois vamos jogar isso para um K8s Secret!
+          valueFrom:
+            secretKeyRef:
+              name: fintech-db-secrets
+              key: db-pass
         ports:
-        - containerPort: 5432 # Porta padrão do Postgres
-        
-        # Vincula a pasta interna do Postgres ao nosso PVC seguro
+        - containerPort: 5432
         volumeMounts:
         - name: postgres-storage
           mountPath: /var/lib/postgresql/data
-      
-      # Declara o volume que o container vai usar
       volumes:
       - name: postgres-storage
         persistentVolumeClaim:
@@ -55,7 +57,7 @@ kind: Service
 metadata:
   name: postgres-service
 spec:
-  type: ClusterIP # Tipo privado! NINGUÉM da internet consegue pingar esse banco, só a nossa API.
+  type: ClusterIP
   selector:
     app: postgres
   ports:

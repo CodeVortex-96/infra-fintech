@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fintech-dashboard
+  labels:
+    grafana_dashboard: "1"
+data:
+  fintech-api.json: |
+    {
+      "title": "Fintech Core Banking - Executive Dashboard",
+      "panels": [
+        {
+          "title": "Disponibilidade (Uptime Real-time)",
+          "type": "gauge",
+          "datasource": "Prometheus",
+          "targets": [{ 
+            "expr": "1 - (sum(rate(flask_http_request_total{status=~'5..'}[5m])) / sum(rate(flask_http_request_total[5m])))",
+            "format": "percent"
+          }]
+        },
+        {
+          "title": "Throughput (Transações por Segundo - TPS)",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [{ 
+            "expr": "sum(rate(flask_http_request_total[1m]))",
+            "legend": "TPS Total"
+          }]
+        },
+        {
+          "title": "Latência P99 e P95 (Experiência do Cliente)",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            { "expr": "histogram_quantile(0.99, sum(rate(flask_http_request_duration_seconds_bucket[5m])) by (le))", "legend": "P99 (Slowest 1%)" },
+            { "expr": "histogram_quantile(0.95, sum(rate(flask_http_request_duration_seconds_bucket[5m])) by (le))", "legend": "P95 (Slowest 5%)" }
+          ]
+        },
+        {
+          "title": "Saturação do Sistema (Uso de CPU dos Pods)",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [{ 
+            "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace='production'}) by (pod)",
+            "legend": "{{pod}}"
+          }]
+        }
+      ]
+    }

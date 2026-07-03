@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: argocd-fintech-protection
+  namespace: argocd
+spec:
+  # 1. Proteção de Taxa (Mais conservador para evitar estouro)
+  rateLimit:
+    average: 50
+    burst: 20
+  # 2. Adicionando segurança extra (Headers de proteção)
+  headers:
+    browserXssFilter: true
+    contentTypeNosniff: true
+    forceSTSHeader: true
+    stsIncludeSubdomains: true
+    stsPreload: true

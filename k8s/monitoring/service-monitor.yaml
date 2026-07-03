@@ -1,0 +1,36 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: fintech-api-monitor
+  namespace: monitoring # O Operator geralmente vive aqui
+  labels:
+    team: fintech
+    app: prometheus-operator
+spec:
+  # Filtro seletivo rigoroso: só monitora o que tem a label correta
+  selector:
+    matchLabels:
+      app: fintech-api
+  
+  # Namespace de destino: onde seu Service está rodando
+  namespaceSelector:
+    matchNames:
+      - default
+
+  # Configuração de "Scraping" de alto nível
+  endpoints:
+    - port: http-web # O nome da porta que definiremos no seu Service
+      path: /metrics
+      interval: 15s           # Frequência de coleta (equilíbrio ideal entre carga e granularidade)
+      scrapeTimeout: 10s      # Timeout agressivo: se a API demorar mais que isso, o scraper corta
+      honorLabels: true       # Preserva as labels originais dos seus pods (essencial p/ debug)
+      
+      # TLS e Auth: Banco não expõe métricas em texto claro, e você também não deveria
+      # (Se formos implementar mTLS depois, configuramos aqui)
+      
+      # Filtro de métricas: Se sua app gerar métricas de lixo/debug, filtramos aqui
+      # para não inchar o banco do Prometheus desnecessariamente
+      metricRelabelings:
+        - action: keep
+          sourceLabels: [__name__]
+          regex: 'flask_http_request_.*|process_cpu_.*|process_resident_memory_bytes'

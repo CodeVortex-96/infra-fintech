@@ -1,0 +1,43 @@
+values: |
+        # 1. Ajuste de Recursos: Não deixe o Prometheus/Grafana sem limites
+        # Eles podem matar seu nó se derem um pico de processamento
+        prometheus:
+          prometheusSpec:
+            resources:
+              requests:
+                memory: "512Mi"
+                cpu: "200m"
+              limits:
+                memory: "2Gi"
+                cpu: "1000m"
+            # 2. Retenção: Em fintech, você precisa de histórico. 15 dias é o mínimo.
+            retention: 15d
+            # 3. Service Discovery: Essencial para não configurar manualmente
+            serviceMonitorSelectorNilUsesHelmValues: false
+            ruleSelectorNilUsesHelmValues: false
+
+        grafana:
+          # 4. Segurança: Desabilite o acesso anônimo, sempre force login
+          grafana.ini:
+            auth:
+              disable_login_form: false
+              disable_signout_menu: false
+            users:
+              allow_sign_up: false
+          sidecar:
+            dashboards:
+              enabled: true
+              label: grafana_dashboard
+              folder: /tmp/dashboards
+        
+        # 5. Alertmanager: Onde a mágica acontece. Configurar o PagerDuty ou Slack
+        alertmanager:
+          enabled: true
+          alertmanagerSpec:
+            storage:
+              volumeClaimTemplate:
+                spec:
+                  accessModes: ["ReadWriteOnce"]
+                  resources:
+                    requests:
+                      storage: 10Gi

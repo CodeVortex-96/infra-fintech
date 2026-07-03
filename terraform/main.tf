@@ -1,4 +1,4 @@
-# Define que vamos usar o provedor da AWS (padrão de mercado para Fintechs)
+# Orquestrador Central da Fintech Infrastructure
 terraform {
   required_version = ">= 1.5.0"
   required_providers {
@@ -10,17 +10,37 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1" # Região padrão de baixa latência e custo
+  region = "us-east-1"
 }
 
-# 1. Criação da VPC (O escudo da nossa rede)
-resource "aws_vpc" "fintech_vpc" {
-  cidr_block           = "10.0.0.0/16" # Espaço para até 65 mil IPs internos
-  enable_dns_support   = true
-  enable_dns_hostnames = true
+# 1. Rede (Fundação)
+module "rede" {
+  source              = "./modules/rede"
+  vpc_cidr            = "10.0.0.0/16"
+  public_subnet_cidr  = "10.0.1.0/24"
+  private_subnet_cidr = "10.0.10.0/24"
+  env                 = "production"
+}
 
-  tags = {
-    Name        = "fintech-production-vpc"
-    Environment = "production"
-  }
+# 2. Segurança (Proteção)
+module "security" {
+  source = "./modules/security"
+  vpc_id = module.rede.vpc_id
+}
+
+# 3. Segredos (Gestão de Credenciais)
+module "secrets" {
+  source = "./modules/secrets"
+  env    = "production"
+}
+
+# 4. Cluster (Core da Aplicação)
+module "eks" {
+  source       = "./modules/eks"
+  env          = "production"
+  eks_role_arn = "arn:aws:iam::123456789012:role/eks-cluster-role"
+  
+  # Aqui fazemos a "amarracão" de dependência real entre os módulos
+  subnet_ids   = [module.rede.private_subnet_id] 
+  eks_sg_id    = module.security.api_sg_id
 }

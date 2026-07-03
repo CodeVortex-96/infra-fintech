@@ -1,0 +1,33 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: fintech-prometheus
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  replicas: 2 # Alta Disponibilidade: se um cair, o outro assume (Sharded)
+  version: v2.45.0
+  serviceAccountName: prometheus-operator
+  retention: 30d # Compliance bancário: retenção mínima de 30 dias
+  storage:
+    volumeClaimTemplate:
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 20Gi # Volume persistente para não perder métricas no restart
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2Gi # Foco em performance: Prometheus é um devorador de RAM
+    limits:
+      cpu: 1000m
+      memory: 4Gi
+  serviceMonitorSelector:
+    matchLabels:
+      team: fintech
+  # Garante que o Prometheus ignore alertas irrelevantes (limpeza de sinal)
+  ruleSelector:
+    matchLabels:
+      role: alert-rules

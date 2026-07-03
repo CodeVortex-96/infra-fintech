@@ -1,68 +1,135 @@
 apiVersion: apps/v1
+
 kind: Deployment
+
 metadata:
+
   name: fintech-api-deployment
+
   labels:
+
     app: fintech-api
+
 spec:
+
   replicas: 2
+
   # Estratégia Sênior: Garante que nunca fiquemos sem pods durante um deploy
+
   strategy:
+
     type: RollingUpdate
+
     rollingUpdate:
+
       maxSurge: 1
+
       maxUnavailable: 0
+
   selector:
+
     matchLabels:
+
       app: fintech-api
+
   template:
+
     metadata:
+
       labels:
+
         app: fintech-api
+
     spec:
+
       containers:
+
       - name: fintech-core
+
         image: fintech-app:latest
+
         imagePullPolicy: Never
+
         ports:
+
         - containerPort: 8080
+
         
+
         # --- HEALTH CHECKS (O CORAÇÃO DO K8S) ---
+
         # Liveness: Se falhar, o K8s mata e reinicia o pod
+
         livenessProbe:
+
           httpGet:
+
             path: /
+
             port: 8080
+
           initialDelaySeconds: 15
+
           periodSeconds: 20
+
         # Readiness: Se falhar, o K8s para de mandar tráfego para este pod
+
         readinessProbe:
+
           httpGet:
+
             path: /
+
             port: 8080
+
           initialDelaySeconds: 5
+
           periodSeconds: 10
 
+
+
         env:
+
         - name: DB_HOST
+
           value: "postgres-service"
+
         - name: DB_NAME
+
           value: "fintech_db"
+
         - name: DB_USER
+
           valueFrom:
+
             secretKeyRef:
+
               name: fintech-db-secrets
+
               key: db-user
+
         - name: DB_PASSWORD
+
           valueFrom:
+
             secretKeyRef:
+
               name: fintech-db-secrets
+
               key: db-pass
 
+
+
         resources:
+
           limits:
+
             cpu: "500m"
+
             memory: "512Mi"
+
           requests:
+
             cpu: "250m"
+
             memory: "128Mi"
