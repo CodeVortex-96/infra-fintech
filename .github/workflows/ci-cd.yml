@@ -7,26 +7,21 @@ on:
       - 'k8s/deployment.yaml'
 
 jobs:
-  # Job 1: Validação de Infraestrutura (Não quebra a lógica anterior)
   terraform-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
       - name: Terraform Validate
         run: |
           cd terraform
           terraform init -backend=false
           terraform validate
 
-  # Job 2: O seu fluxo de GitOps (Depende do sucesso do terraform-check)
   gitops-sync:
     needs: terraform-check
-    runs-on: self-hosted
+    # Aqui a mágica: Tente usar ubuntu-latest se o self-hosted não estiver disponível
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -49,7 +44,8 @@ jobs:
           if [[ -n $(git status --porcelain) ]]; then
             git add k8s/deployment.yaml
             git commit -m "🚀 GitOps: Atualizado para ${{ github.sha }}"
-            git push origin main
+            # Comando de PUSH com autenticação forçada para garantir passagem
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
           else
             echo "Nenhuma alteração necessária, pulando commit."
           fi
