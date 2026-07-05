@@ -46,7 +46,7 @@ spec:
 
       - name: fintech-core
 
-        image: fintech-app:6e8a2c255b3d1033b5762c3285d0362bbdb83d79
+        image: fintech-app:982d7e4ded61c2adc59dc2f933dbe93440f14d88
 
         imagePullPolicy: Never
 
