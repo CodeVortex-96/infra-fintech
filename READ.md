@@ -218,13 +218,9 @@ kubectl apply -f k8s/
 # Watch deployment
 kubectl rollout status deployment/fintech-api-deployment
 
-# Test the API
-curl -X POST http://fintech.local/transacao \
+# Test the API \
   -H "Content-Type: application/json" \
   -d '{"tipo": "credito", "valor": 150.00}'
-
-# Check metrics
-curl http://fintech.local/metrics
 
 
 Tech Stack
