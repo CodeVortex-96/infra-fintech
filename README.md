@@ -18,7 +18,7 @@ TLS termination, rate limiting, and network segmentation from day one
 
 No credentials in code. No shortcuts on security. No "we'll fix this later" comments left open.
 
-
+```text
 Architecture
 
 GitHub Repository (GitOps source of truth)
@@ -47,13 +47,13 @@ PostgreSQL   Prometheus
 (PVC disk)       |
                  v
            Grafana Dashboard
-           (uptime, TPS, P95/P99 latency, CPU saturation)
-
+           (uptime, TPS, P95/P99 latency, CPU saturation) 
+```
 The API sits in a private subnet. The only entry point is the Ingress Controller, which terminates TLS and forwards traffic. PostgreSQL is never exposed — it communicates only within the cluster via ClusterIP. The ArgoCD panel is protected by Traefik middleware with rate limiting and security headers.
 
 
 Project Structure
-
+```text
 infra-fintech/
 ├── app/
 │   ├── Dockerfile
@@ -94,7 +94,7 @@ infra-fintech/
 │       └── secrets/
 ├── deploy.sh
 └── .github/workflows/ci-cd.yml
-
+```
 
 Application Layer
 
